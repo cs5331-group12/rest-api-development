@@ -8,6 +8,5 @@ RUN pip install -U flask
 RUN pip install -U flask-cors
 RUN echo "ServerName localhost  " >> /etc/apache2/apache2.conf
 RUN echo "$user     hard    nproc       20" >> /etc/security/limits.conf
-ADD ./src/service /service
 EXPOSE 80
 EXPOSE 8080
