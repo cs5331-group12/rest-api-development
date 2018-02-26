@@ -1,0 +1,8 @@
+.side-nav-logo {
+    text-align: center;
+    margin-top: 32px;
+    padding-bottom: 32px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.14);
+}

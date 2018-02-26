@@ -1,0 +1,25 @@
+nav.top-nav {
+    color: #ee6e73;
+    background-color: #fff;
+    height: 113px;
+    padding-left: 300px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0,0,0,0.14);
+    background-color: transparent;
+}
+
+.top-nav>.container {
+    width: 100%;
+}
+
+nav.nav-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.header {
+    margin: 0;
+    padding-top: 26px;
+    font-weight: 300;
+}
