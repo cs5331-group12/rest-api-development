@@ -1,5 +1,9 @@
 $(document).ready(function() {
-
+    // TODO: Check if user is logged in
+    var logged_in = true;
+    if (!logged_in) {
+        window.location.href = "/sign_in.html";
+    }
     init_top_nav("Your Diaries");
     init_side_nav(".view-private");
     // TODO: get results from backend

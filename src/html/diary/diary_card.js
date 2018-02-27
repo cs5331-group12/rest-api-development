@@ -18,6 +18,7 @@ function setup_diary_card_callbacks() {
             public: e.currentTarget.dataset.public === "false",
             text: e.currentTarget.dataset.text
         }
+        // TODO: Toggle diary permission
         $(this).closest('div[id^="'+e.currentTarget.dataset.id+'"]').remove();
         var section = params.public ? ".public-diary-section > .row" : ".private-diary-section > .row"
         $(section).append(init_diary(params, true, params.public));
