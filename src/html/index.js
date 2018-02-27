@@ -1,6 +1,7 @@
 $(document).ready(function() {
     init_top_nav("Public Diaries");
     init_side_nav(".view-public");
+    // TODO: get results from backend
     var results = {
         "status": true,
         "result": [
@@ -22,5 +23,5 @@ $(document).ready(function() {
           }
         ]
       }
-    init_diary(results);
+    init_diaries(results["result"], ".main-section-container", false);
 });

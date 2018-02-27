@@ -1,6 +1,8 @@
 $(document).ready(function() {
+
     init_top_nav("Your Diaries");
     init_side_nav(".view-private");
+    // TODO: get results from backend
     var results = {
         "status": true,
         "result": [
@@ -22,5 +24,7 @@ $(document).ready(function() {
           }
         ]
       }
-    // init_diary(results);
+    init_diaries(results["result"].filter(function(res) { return res.public; }), ".public-diary-section", true, true);
+    init_diaries(results["result"].filter(function(res) { return !res.public; }), ".private-diary-section", true, false);
+    setup_diary_card_callbacks();
 });
