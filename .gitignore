@@ -1,2 +1,6 @@
 src/html/node_modules
 **/.DS_Store
+
+# Django ignored files
+*.pyc
+src/service/encrypted/db.sqlite3
