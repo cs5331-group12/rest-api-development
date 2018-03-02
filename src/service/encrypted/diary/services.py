@@ -4,18 +4,48 @@ from __future__ import unicode_literals
 from diary.models import Diary
 from authentication.models import Authentication
 
-def retrieve_diary(data=None):
-	diaries = None
+def required(data, *args): 
 
-	if not data:
-		diaries = Diary.objects.filter(is_public=True)
-	else:
-		user = Authentication.objects.get_user_from_token(data["token"])
+	result = True
+	for x in args:
+		if x not in data:
+			result = False
+	return result
 
-		if user:
-			diaries = Diary.objects.filter(user=user)
 
-	if diaries:
+def strtobool(text):
+	return text.lower() in ("true", "yes", "t", "1") 
+
+
+def retrieve_diary_public(data=None):
+
+	diaries = Diary.objects.filter(is_public=True)
+
+	return {
+		"status": True,
+		"result": [{
+			"id": diary.id,
+			"title": diary.title,
+			"author": diary.user.username,
+			"publish_date": diary.published_date,
+			"public": diary.is_public,
+			"text": diary.text
+		} for diary in diaries],
+	}
+
+def retrieve_diary_by_user(data):
+
+	validation = required(data, 'token')
+	
+	if not validation: 
+		return {
+				"status": False,
+				"error": "Token is required!",
+			}
+
+	user = Authentication.objects.get_user_from_token(data["token"])
+	if user:
+		diaries = Diary.objects.filter(user=user)
 		return {
 			"status": True,
 			"result": [{
@@ -34,20 +64,32 @@ def retrieve_diary(data=None):
 		}
 
 def create_diary(data):
+
+	validation = required(data, 'token', 'title', 'public', 'text')
+	
+	if not validation: 
+		return {
+				"status": False,
+				"error": "Token, title, public and text are required!",
+			}
+
 	user = Authentication.objects.get_user_from_token(data["token"])
+	public = strtobool( data["public"] )
 
 	if user:
 		diary = Diary(
 			title=data["title"],
 			user=user,
-			is_public=data["public"],
+			is_public=public,
 			text=data["text"]
 			)
 		diary.save()
 
 		return {
 			"status": True,
-			"id": diary.id,
+			"result": {
+				"id": diary.id
+			}
 		}
 	else:
 		return { 
@@ -56,6 +98,15 @@ def create_diary(data):
 		}
 
 def delete_diary(data):
+
+	validation = required(data, 'token', 'id')
+	
+	if not validation: 
+		return {
+				"status": False,
+				"error": "Token and diary id are required!",
+			}
+
 	user = Authentication.objects.get_user_from_token(data["token"])
 
 	if user:
@@ -79,13 +130,23 @@ def delete_diary(data):
 		}
 
 def update_diary(data):
+
+	validation = required(data, 'token', 'id', 'public')
+	
+	if not validation: 
+		return {
+				"status": False,
+				"error": "Token, diary id and public are required!",
+			}
+
 	user = Authentication.objects.get_user_from_token(data["token"])
+	public = strtobool( data["public"] )
 
 	if user:
 		diary = Diary.objects.get_diary_from_id_user(data["id"], user)
 
 		if diary:
-			diary.is_public = data["public"]
+			diary.is_public = public
 			diary.save()
 
 			return {
