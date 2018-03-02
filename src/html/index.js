@@ -2,6 +2,13 @@ $(document).ready(function() {
     init_top_nav("Public Diaries");
     init_side_nav(".view-public");
     // TODO: get results from backend
+    $.ajax({
+        url:"localhost:8080/diary",
+        success:function(data) {
+          console.log(data)
+        }
+    });
+
     var results = {
         "status": true,
         "result": [
