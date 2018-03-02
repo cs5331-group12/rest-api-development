@@ -3,6 +3,7 @@ $(document).ready(function() {
     init_side_nav(".view-public");
     // TODO: get results from backend
     $.ajax({
+        crossDomain: true,
         url:"http://localhost:8080/diary",
         success:function(data) {
           console.log(data)
