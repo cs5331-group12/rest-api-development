@@ -5,7 +5,7 @@ $(document).ready(function() {
     $.ajax({
         crossDomain: true,
         type: 'GET',
-        dataType: "jsonp",
+        dataType: 'jsonp',
         url: "http://localhost:8080/diary",
         success:function(data) {
           console.log(data)
