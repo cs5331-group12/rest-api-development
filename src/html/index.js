@@ -6,7 +6,7 @@ $(document).ready(function() {
         crossDomain: true,
         type: 'GET',
         dataType: "jsonp",
-        url:"http://localhost:8080/diary",
+        url: "http://localhost:8080/diary",
         success:function(data) {
           console.log(data)
         }
