@@ -5,6 +5,8 @@ RUN apt-get install -y python-pip
 RUN apt-get install -y apache2
 RUN pip install -U pip
 RUN pip install -U django
+RUN pip install -U django-cors-middleware
+RUN pip install -U django-cors-headers
 RUN pip install -U djangorestframework
 RUN pip install -U markdown
 RUN pip install -U django-filter
