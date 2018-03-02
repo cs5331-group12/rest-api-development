@@ -1,7 +1,8 @@
 FROM ubuntu:latest
 RUN apt-get update
 RUN apt-get install -y nodejs npm
-RUN cd src/html && npm install
+RUN ls
+RUN cd ./src/html && npm install
 RUN apt-get install -y python-pip
 RUN apt-get install -y apache2
 RUN pip install -U pip
