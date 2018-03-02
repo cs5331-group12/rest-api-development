@@ -4,6 +4,7 @@ $(document).ready(function() {
     // TODO: get results from backend
     $.ajax({
         crossDomain: true,
+        type: 'GET',
         url:"http://localhost:8080/diary",
         success:function(data) {
           console.log(data)
