@@ -5,7 +5,6 @@ $(document).ready(function() {
   var token = sessionStorage.getItem('token');
 
   if(token) {
-    // TODO: Check if user is logged in
     $.ajax({
       type: 'POST',
       data: {

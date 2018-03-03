@@ -26,7 +26,15 @@ function submitAuthForm(login) {
         params["fullname"] = $("#fullname").val() || "";
         params["age"] = parseInt($("#age").val());
     }
-    M.toast({html: 'This is not implemented yet!!!', classes: 'rounded red'});
+    // M.toast({html: 'This is not implemented yet!!!', classes: 'rounded red'});
+    $.ajax({
+      type: 'POST',
+      data: params,
+      url: "http://localhost:8080/users/register",
+      success:function(data) {
+        console.log(data)
+      }
+    });
     // TODO: Register/Sign in Request
     // After succeed, direct to home page
     // if (success) {
