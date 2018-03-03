@@ -22,6 +22,7 @@ function submitAuthForm(login) {
     var process_request = true;
     var url = "";
     var params = {}
+
     params["username"] = $("#username").val() || "";
     params["password"] = $("#password").val() || "";
     if (!login) {
@@ -46,7 +47,6 @@ function submitAuthForm(login) {
     if(process_request) {
         $.ajax({
           type: 'POST',
-          contentType: "application/json",
           data: params,
           url: url,
           success:function(data) {
