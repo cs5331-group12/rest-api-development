@@ -26,13 +26,13 @@ function submitAuthForm(login) {
         params["fullname"] = $("#fullname").val() || "";
         params["age"] = parseInt($("#age").val());
     }
-    M.toast({html: 'This is not implemented yet!!!', classes: 'rounded red'}); 
+    M.toast({html: 'This is not implemented yet!!!', classes: 'rounded red'});
     // TODO: Register/Sign in Request
     // After succeed, direct to home page
     // if (success) {
     //     M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}})
     // } else {
-    //     M.toast({html: 'Error message', classes: 'rounded red'}); 
+    //     M.toast({html: 'Error message', classes: 'rounded red'});
     // }
 }
 
