@@ -19,39 +19,51 @@ function init_auth_form(login) {
 }
 
 function submitAuthForm(login) {
+    var process_request = true;
+    var url = "";
     var params = {}
     params["username"] = $("#username").val() || "";
     params["password"] = $("#password").val() || "";
     if (!login) {
+        url = "http://localhost:8080/users/register";
+
         params["fullname"] = $("#fullname").val() || "";
         params["age"] = parseInt($("#age").val());
 
         if(!(params["username"] && params["password"] && params["fullname"] && params["age"])) {
             M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
-            return;
+            process_request = false;
         }
     } else {
+        url = "http://localhost:8080/users/authenticate";
+
         if(!(params["username"] && params["password"])) {
             M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
-            return;
+            process_request = false;
         }
     }
 
-    $.ajax({
-      type: 'POST',
-      data: params,
-      url: "http://localhost:8080/users/register",
-      success:function(data) {
-        console.log(data)
-      }
-    });
-    // TODO: Register/Sign in Request
-    // After succeed, direct to home page
-    // if (success) {
-    //     M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}})
-    // } else {
-    //     M.toast({html: 'Error message', classes: 'rounded red'});
-    // }
+    if(process_request) {
+        $.ajax({
+          type: 'POST',
+          contentType: "application/json",
+          data: params,
+          url: url,
+          success:function(data) {
+            var status = data['status'];
+
+            if(status) {
+                M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
+            } else {
+                if(login) {
+                    M.toast({html: "Oops! Something went wrong!", classes: 'rounded red'});
+                } else {
+                    M.toast({html: data['error'], classes: 'rounded red'});
+                }
+            }
+          }
+        });
+    }
 }
 
 function full_name_input() {

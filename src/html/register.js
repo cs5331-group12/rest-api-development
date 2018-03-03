@@ -7,6 +7,7 @@ $(document).ready(function() {
   if(token) {
     $.ajax({
       type: 'POST',
+      contentType: "application/json",
       data: {
         "token": token,
       },
