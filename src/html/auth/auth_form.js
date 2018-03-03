@@ -52,10 +52,31 @@ function submitAuthForm(login) {
           success:function(data) {
             var status = data['status'];
 
-            console.log(status)
-
             if(status) {
-                M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
+                if(login) {
+                    M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
+                } else {
+                    M.toast({html: 'Your Registration is successful!', classes: 'rounded green', displayLength: 500});
+
+                    //if register user is successful, log the user in
+                    $.ajax({
+                        type: 'POST',
+                        data: params,
+                        url: "http://localhost:8080/users/authenticate",
+                        success:function(data) {
+                            var status = data['status'];
+
+                            if(status) {
+                                var token = data['result']['token'];
+                                sessionStorage.setItem('token', token);
+
+                                M.toast({html: 'Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
+                            } else {
+                                M.toast({html: 'Login unsuccessful!', classes: 'rounded red', displayLength: 500});
+                            }
+                        }
+                    });
+                }
             } else {
                 if(login) {
                     M.toast({html: "Incorrect username or password", classes: 'rounded red'});
