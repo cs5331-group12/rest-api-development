@@ -10,7 +10,7 @@ $(document).ready(function() {
       type: 'POST',
       data: {
         "token": token,
-      }
+      },
       url: "http://localhost:8080/users/expire",
       success:function(data) {
         if(data['status']) {
