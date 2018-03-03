@@ -52,11 +52,13 @@ function submitAuthForm(login) {
           success:function(data) {
             var status = data['status'];
 
+            console.log(status)
+
             if(status) {
                 M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
             } else {
                 if(login) {
-                    M.toast({html: "Oops! Something went wrong!", classes: 'rounded red'});
+                    M.toast({html: "Incorrect username or password", classes: 'rounded red'});
                 } else {
                     M.toast({html: data['error'], classes: 'rounded red'});
                 }
