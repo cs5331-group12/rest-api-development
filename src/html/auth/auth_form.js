@@ -26,7 +26,12 @@ function submitAuthForm(login) {
         params["fullname"] = $("#fullname").val() || "";
         params["age"] = parseInt($("#age").val());
     }
-    // M.toast({html: 'This is not implemented yet!!!', classes: 'rounded red'});
+
+    if(!params["username"] || !params["password"] || !params["fullname"] || !params["age"]) {
+        M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
+        return;
+    }
+
     $.ajax({
       type: 'POST',
       data: params,
