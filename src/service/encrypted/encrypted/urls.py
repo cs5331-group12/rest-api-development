@@ -21,8 +21,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.root),
     url(r'^admin/', admin.site.urls),
-    url(r'^diary/', include('diary.urls', namespace='diary')),
-    url(r'^meta/', include('meta.urls', namespace='meta')),
-    url(r'^users/', include('users.urls', namespace='users')),
+    url(r'^diary/?', include('diary.urls', namespace='diary')),
+    url(r'^meta/?', include('meta.urls', namespace='meta')),
+    url(r'^users/?', include('users.urls', namespace='users')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

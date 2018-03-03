@@ -14,9 +14,9 @@ def retrieve_diary(request):
     response = {}
 
     if request.method == "GET":
-        response = DiarysServices.retrieve_diary()
+        response = DiarysServices.retrieve_diary_public()
     elif request.method == "POST":
-        response = DiarysServices.retrieve_diary(request.data)
+        response = DiarysServices.retrieve_diary_by_user(request.data)
 
     return Response(response)
 
