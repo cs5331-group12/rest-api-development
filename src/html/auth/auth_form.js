@@ -25,14 +25,16 @@ function submitAuthForm(login) {
     if (!login) {
         params["fullname"] = $("#fullname").val() || "";
         params["age"] = parseInt($("#age").val());
-    }
 
-    if(!login && !(params["username"] || params["password"] || params["fullname"] || params["age"])) {
-        M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
-        return;
-    } else if(login && !(params["username"] || params["password"])) {
-        M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
-        return;
+        if(!(params["username"] && params["password"] && params["fullname"] && params["age"])) {
+            M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
+            return;
+        }
+    } else {
+        if(!(params["username"] && params["password"])) {
+            M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
+            return;
+        }
     }
 
     $.ajax({
