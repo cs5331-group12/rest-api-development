@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var logged_in = false;
+  var logged_in = true;
 
   //check if there is stored token
   var token = sessionStorage.getItem('token');
