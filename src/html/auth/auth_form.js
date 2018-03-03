@@ -27,7 +27,10 @@ function submitAuthForm(login) {
         params["age"] = parseInt($("#age").val());
     }
 
-    if(!params["username"] || !params["password"] || !params["fullname"] || !params["age"]) {
+    if(!login && !(params["username"] || params["password"] || params["fullname"] || params["age"])) {
+        M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
+        return;
+    } else if(login && !(params["username"] || params["password"])) {
         M.toast({html: "Don't leave the form hanging! All fields are required", classes: 'rounded red'});
         return;
     }
