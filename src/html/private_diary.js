@@ -22,6 +22,7 @@ $(document).ready(function() {
           success:function(data) {
             if(data['status']) {
                 results = data['result']
+                console.log(results)
             } else {
                 M.toast({html: data['error'], classes: 'rounded red'});
             }
