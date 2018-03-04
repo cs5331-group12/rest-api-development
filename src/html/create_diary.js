@@ -17,8 +17,8 @@ function submitDiary() {
     var process_request = true;
     var url = "http://localhost:8080/diary/create"
     var params = {}
-    params["title"] = $("#title").val() || "";
-    params["text"] = $("#text").val() || "";
+    params["title"] = sanitize($("#title").val() || "");
+    params["text"] = sanitize($("#text").val() || "");
 
     if(!(params["title"] && params["text"])) {
         M.toast({html: "You have some empty fields.", classes: 'rounded red'});

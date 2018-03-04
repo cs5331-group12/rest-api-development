@@ -21,3 +21,7 @@ function isLoggedIn() {
 
   return toReturn;
 }
+
+function sanitize(toBeSanitize) {
+  return toBeSanitize == null ? toBeSanitize : toBeSanitize.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}

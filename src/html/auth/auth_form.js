@@ -23,13 +23,13 @@ function submitAuthForm(login) {
     var url = "";
     var params = {}
 
-    params["username"] = $("#username").val() || "";
+    params["username"] = sanitize($("#username").val() || "");
     params["password"] = $("#password").val() || "";
 
     if (!login) {
         url = "http://localhost:8080/users/register";
 
-        params["fullname"] = $("#fullname").val() || "";
+        params["fullname"] = sanitize($("#fullname").val() || "");
         params["age"] = parseInt($("#age").val());
 
         if(!(params["username"] && params["password"] && params["fullname"] && params["age"])) {
