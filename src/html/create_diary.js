@@ -32,13 +32,14 @@ function submitDiary() {
             window.location.href = "/sign_in.html"
         }
 
+        var token = sessionStorage.getItem('token');
         $.ajax({
           type: 'POST',
           data: {
-            "token": "6bf00d02-dffc-4849-a635-a21b08500d61",
-            "title": "No One Can See This Post",
+            "token": token,
+            "title": params["title"],
             "public": false,
-            "text": "It is very secret!"
+            "text": params["text"]
           },
           url: url,
           success:function(data) {
