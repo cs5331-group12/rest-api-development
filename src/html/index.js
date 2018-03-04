@@ -12,6 +12,7 @@ $(document).ready(function() {
             console.log(data)
             if(results["status"]) {
                 results = data['result'];
+                console.log(results)
                 init_diaries(results, ".main-section-container", false);
             }
         }
