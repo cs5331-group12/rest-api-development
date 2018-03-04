@@ -34,6 +34,7 @@ function submitDiary() {
         }
 
         var token = sessionStorage.getItem('token');
+
         $.ajax({
           type: 'POST',
           data: {
@@ -44,17 +45,15 @@ function submitDiary() {
           },
           url: url,
           success:function(data) {
-            cleanUpForm()
-            M.toast({html: 'Diary created successfully', classes: 'rounded green'});
+            if(data['status']) {
+                cleanUpForm()
+                M.toast({html: 'Diary created successfully', classes: 'rounded green'});
+            } else {
+                M.toast({html: data['error'], classes: 'rounded red'});
+            }
           }
         });
     }
-
-    // if (success) {
-
-    // } else {
-    //     M.toast({html: 'Error message', classes: 'rounded red'});
-    // }
 }
 
 function cleanUpForm() {
