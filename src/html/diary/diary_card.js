@@ -25,15 +25,25 @@ function setup_diary_card_callbacks() {
     })
     $(".diary-section").on("click", ".delete-diary", function(e) {
         e.preventDefault();
+        var url = "http://localhost:8080/diary/delete"
         var id = parseInt(e.currentTarget.dataset.id);
-        $("#"+id+"-card").remove();
-        // TODO: Delete diary request
-        // if (success) {
-        //     M.toast({html: 'Diary deleted successfully', classes: 'rounded green'})
-        //     
-        // } else {
-        //     M.toast({html: 'Error message', classes: 'rounded red'}); 
-        // }
+
+        $.ajax({
+          type: 'POST',
+          data: {
+            "token": token,
+            "id": id
+          },
+          url: url,
+          success:function(data) {
+            if(data['status']) {
+                $("#"+id+"-card").remove();
+                M.toast({html: 'Diary deleted successfully!', classes: 'rounded green'});
+            } else {
+                M.toast({html: data['error'], classes: 'rounded red'});
+            }
+          }
+        });
     })
 }
 
