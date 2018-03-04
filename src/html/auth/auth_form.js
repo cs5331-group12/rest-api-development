@@ -56,9 +56,11 @@ function submitAuthForm(login) {
                 if(login) {
                     var token = data['result']['token'];
 
-                    console.log(data)
+                    console.log(token)
 
                     sessionStorage.setItem('token', token);
+
+                    console.log(sessionStorage)
 
                     // M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
                 } else {
