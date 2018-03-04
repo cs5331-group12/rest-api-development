@@ -1,4 +1,4 @@
-var isLoggedIn = function() {
+function isLoggedIn() {
   var toReturn = false;
 
   var token = sessionStorage.getItem('token');
