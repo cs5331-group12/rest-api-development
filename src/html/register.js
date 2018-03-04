@@ -3,7 +3,6 @@ $(document).ready(function() {
 
   //check if there is stored token
   var token = sessionStorage.getItem('token');
-  console.log(token)
 
   if(token) {
     $.ajax({
@@ -13,6 +12,7 @@ $(document).ready(function() {
       },
       url: "http://localhost:8080/users/expire",
       success:function(data) {
+        console.log(data)
         if(data['status']) {
           logged_in = true;
         }
