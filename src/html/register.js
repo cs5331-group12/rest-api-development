@@ -3,22 +3,24 @@ $(document).ready(function() {
 
   //check if there is stored token
   var token = sessionStorage.getItem('token');
+  logged_in = token ? true : false;
 
-  if(token) {
-    $.ajax({
-      type: 'POST',
-      data: {
-        "token": token,
-      },
-      url: "http://localhost:8080/users/expire",
-      success:function(data) {
-        console.log(data)
-        if(data['status']) {
-          logged_in = true;
-        }
-      }
-    });
-  }
+  // if(token) {
+  //   $.ajax({
+  //     type: 'POST',
+  //     data: {
+  //       "token": token,
+  //     },
+  //     url: "http://localhost:8080/users/expire",
+  //     success:function(data) {
+  //       console.log(data)
+  //       if(data['status']) {
+  //         logged_in = true;
+  //       }
+  //     }
+  //   });
+  // }
+  console.log(logged_in)
 
   if (logged_in) {
       window.location.href = "/";
