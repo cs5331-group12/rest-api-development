@@ -11,6 +11,9 @@ function init_diaries(result, container, edit_enabled, pub) {
 function setup_diary_card_callbacks() {
     $(".diary-section").on("click",".toggle-permission", function(e) {
         e.preventDefault();
+        var $effectedDiaryCard = $(this);
+        var url = "http://localhost:8080/diary/permission"
+
         var params = {
             id: parseInt(e.currentTarget.dataset.id),
             title: e.currentTarget.dataset.title,
@@ -18,11 +21,37 @@ function setup_diary_card_callbacks() {
             public: e.currentTarget.dataset.public === "false",
             text: e.currentTarget.dataset.text
         }
-        // TODO: Toggle diary permission
-        $(this).closest('div[id^="'+e.currentTarget.dataset.id+'"]').remove();
-        var section = params.public ? ".public-diary-section > .row" : ".private-diary-section > .row"
-        $(section).append(init_diary(params, true, params.public));
+
+        var logged_in = isLoggedIn();
+
+        if (!logged_in) {
+            window.location.href = "/sign_in.html"
+        }
+
+        var token = sessionStorage.getItem('token');
+
+        $.ajax({
+          type: 'POST',
+          data: {
+            "token": token,
+            "id": params.id,
+            "public": params.public
+          },
+          url: url,
+          success:function(data) {
+            if(data['status']) {
+                $effectedDiaryCard.closest('div[id^="'+e.currentTarget.dataset.id+'"]').remove();
+                var section = params.public ? ".public-diary-section > .row" : ".private-diary-section > .row"
+                $(section).append(init_diary(params, true, params.public));
+
+                M.toast({html: 'The Diary has been made public!', classes: 'rounded green'});
+            } else {
+                M.toast({html: data['error'], classes: 'rounded red'});
+            }
+          }
+        });
     })
+
     $(".diary-section").on("click", ".delete-diary", function(e) {
         e.preventDefault();
         var url = "http://localhost:8080/diary/delete"
