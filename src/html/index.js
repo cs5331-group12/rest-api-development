@@ -9,10 +9,8 @@ $(document).ready(function() {
         type: 'GET',
         url: "http://localhost:8080/diary",
         success:function(data) {
-            console.log(data)
-            if(results["status"]) {
+            if(data["status"]) {
                 results = data['result'];
-                console.log(results)
                 init_diaries(results, ".main-section-container", false);
             }
         }
