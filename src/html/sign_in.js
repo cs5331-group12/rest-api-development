@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   //check if there is stored token
   var token = sessionStorage.getItem('token');
-  logged_in = token == null ? true : false;
+  logged_in = token == null ? false : true;
 
   // if(token) {
   //   $.ajax({
