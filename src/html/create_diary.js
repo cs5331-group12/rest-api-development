@@ -33,14 +33,42 @@ $(document).ready(function() {
 })
 
 function submitDiary() {
+    var url = "http://localhost:8080/diary/create"
     var params = {}
     params["title"] = $("#title").val() || "";
     params["text"] = $("#text").val() || "";
-    M.toast({html: 'This is not implemented yet!!!', classes: 'rounded red'});
-    // TODO: Create Diary Request
+
+    if(!(params["title"] && params["text"])) {
+        M.toast({html: "You have some empty fields.", classes: 'rounded red'});
+        process_request = false;
+    }
+
+    // Create Diary Request
+    if(process_request) {
+        var logged_in = isLoggedIn();
+
+        if (!logged_in) {
+            window.location.href = "/sign_in.html"
+        }
+
+        $.ajax({
+          type: 'POST',
+          data: {
+            "token": "6bf00d02-dffc-4849-a635-a21b08500d61",
+            "title": "No One Can See This Post",
+            "public": false,
+            "text": "It is very secret!"
+          }
+          url: url,
+          success:function(data) {
+            cleanUpForm()
+            M.toast({html: 'Diary created successfully', classes: 'rounded green'});
+          }
+        });
+    }
+
     // if (success) {
-    //    cleanUpForm()
-    //     M.toast({html: 'Diary created successfully', classes: 'rounded green'});
+
     // } else {
     //     M.toast({html: 'Error message', classes: 'rounded red'});
     // }

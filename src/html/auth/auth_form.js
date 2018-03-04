@@ -25,6 +25,7 @@ function submitAuthForm(login) {
 
     params["username"] = $("#username").val() || "";
     params["password"] = $("#password").val() || "";
+
     if (!login) {
         url = "http://localhost:8080/users/register";
 
