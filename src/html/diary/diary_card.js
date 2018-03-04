@@ -26,7 +26,15 @@ function setup_diary_card_callbacks() {
     $(".diary-section").on("click", ".delete-diary", function(e) {
         e.preventDefault();
         var url = "http://localhost:8080/diary/delete"
-        var id = parseInt(e.currentTarget.dataset.id);
+        var id = parseInt(e.currentTarget.dataset.id)
+
+        var logged_in = isLoggedIn();
+
+        if (!logged_in) {
+            window.location.href = "/sign_in.html"
+        }
+
+        var token = sessionStorage.getItem('token');
 
         $.ajax({
           type: 'POST',
