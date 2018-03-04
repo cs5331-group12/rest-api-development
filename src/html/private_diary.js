@@ -29,7 +29,7 @@ $(document).ready(function() {
         });
     }
 
-    init_diaries(results["result"].filter(function(res) { return res.public; }), ".public-diary-section", true, true);
-    init_diaries(results["result"].filter(function(res) { return !res.public; }), ".private-diary-section", true, false);
+    init_diaries(results.filter(function(res) { return res.public; }), ".public-diary-section", true, true);
+    init_diaries(results.filter(function(res) { return !res.public; }), ".private-diary-section", true, false);
     setup_diary_card_callbacks();
 });
