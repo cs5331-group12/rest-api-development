@@ -6,10 +6,10 @@ $(document).ready(function() {
         window.location.href = "/sign_in.html"
     }
 
-    init_top_nav("Your Diaries");
-    init_side_nav(".view-private");
-
     if(logged_in) {
+        init_top_nav("Your Diaries");
+        init_side_nav(".view-private");
+
         var url = "http://localhost:8080/diary"
         var token = sessionStorage.getItem('token');
 
