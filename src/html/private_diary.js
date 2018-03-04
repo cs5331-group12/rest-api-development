@@ -22,15 +22,14 @@ $(document).ready(function() {
           success:function(data) {
             if(data['status']) {
                 results = data['result']
-                console.log(results)
+
+                init_diaries(results.filter(function(res) { return res.public; }), ".public-diary-section", true, true);
+                init_diaries(results.filter(function(res) { return !res.public; }), ".private-diary-section", true, false);
+                setup_diary_card_callbacks();
             } else {
                 M.toast({html: data['error'], classes: 'rounded red'});
             }
           }
         });
     }
-
-    init_diaries(results.filter(function(res) { return res.public; }), ".public-diary-section", true, true);
-    init_diaries(results.filter(function(res) { return !res.public; }), ".private-diary-section", true, false);
-    setup_diary_card_callbacks();
 });
