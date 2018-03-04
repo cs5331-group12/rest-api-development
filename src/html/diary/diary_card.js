@@ -44,7 +44,7 @@ function setup_diary_card_callbacks() {
                 var section = params.public ? ".public-diary-section > .row" : ".private-diary-section > .row"
                 $(section).append(init_diary(params, true, params.public));
 
-                M.toast({html: 'The Diary has been made public!', classes: 'rounded green'});
+                M.toast({html: params.public ? 'The Diary has been made public!' : 'The Diary has been made private!', classes: 'rounded green'});
             } else {
                 M.toast({html: data['error'], classes: 'rounded red'});
             }
