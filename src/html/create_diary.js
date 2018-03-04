@@ -14,6 +14,7 @@ $(document).ready(function() {
 })
 
 function submitDiary() {
+    var process_request = true;
     var url = "http://localhost:8080/diary/create"
     var params = {}
     params["title"] = $("#title").val() || "";
