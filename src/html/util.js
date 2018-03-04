@@ -21,3 +21,18 @@ function isLoggedIn() {
 
   return toReturn;
 }
+
+function logOut(callback) {
+  var token = sessionStorage.getItem('token');
+  $.ajax({
+    type: 'POST',
+    data: {
+      "token": token,
+    },
+    url: "http://localhost:8080/users/expire",
+    success: function(data) {
+      sessionStorage.removeItem('token');
+      callback();
+    }
+  })
+}
