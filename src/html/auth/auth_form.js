@@ -54,6 +54,10 @@ function submitAuthForm(login) {
 
             if(status) {
                 if(login) {
+                    var token = data['result']['token'];
+
+                    sessionStorage.setItem('token', token);
+
                     M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
                 } else {
                     M.toast({html: 'Your Registration is successful!', classes: 'rounded green', displayLength: 500});
@@ -69,11 +73,7 @@ function submitAuthForm(login) {
                             if(status) {
                                 var token = data['result']['token'];
 
-                                console.log(token)
-
                                 sessionStorage.setItem('token', token);
-
-                                console.log(sessionStorage)
 
                                 M.toast({html: 'Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
                             } else {

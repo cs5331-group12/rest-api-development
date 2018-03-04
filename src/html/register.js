@@ -3,24 +3,22 @@ $(document).ready(function() {
 
   //check if there is stored token
   var token = sessionStorage.getItem('token');
-  logged_in = token == null ? false : true;
+  logged_in = !(token == null || token == "");
 
-  // if(token) {
-  //   $.ajax({
-  //     type: 'POST',
-  //     data: {
-  //       "token": token,
-  //     },
-  //     url: "http://localhost:8080/users/expire",
-  //     success:function(data) {
-  //       console.log(data)
-  //       if(data['status']) {
-  //         logged_in = true;
-  //       }
-  //     }
-  //   });
-  // }
-  console.log(logged_in)
+  if(logged_in) { //might be logged in. So retrieve the user info to check if this user with this token exist
+    $.ajax({
+      type: 'POST',
+      data: {
+        "token": token,
+      },
+      url: "http://localhost:8080/users",
+      success:function(data) {
+        if(!data['status']) {
+          logged_in = false;
+        }
+      }
+    });
+  }
 
   if (logged_in) {
       window.location.href = "/";
