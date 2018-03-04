@@ -16,10 +16,10 @@ function setup_diary_card_callbacks() {
 
         var params = {
             id: parseInt(e.currentTarget.dataset.id),
-            title: e.currentTarget.dataset.title,
-            author: e.currentTarget.dataset.author,
+            title: sanitize(e.currentTarget.dataset.title),
+            author: sanitize(e.currentTarget.dataset.author),
             public: e.currentTarget.dataset.public === "false",
-            text: e.currentTarget.dataset.text
+            text: sanitize(e.currentTarget.dataset.text)
         }
 
         var logged_in = isLoggedIn();
