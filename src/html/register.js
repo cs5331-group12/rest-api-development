@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   //check if there is stored token
   var token = sessionStorage.getItem('token');
+  console.log(token)
 
   if(token) {
     $.ajax({
