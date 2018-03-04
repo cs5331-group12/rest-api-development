@@ -56,9 +56,11 @@ function submitAuthForm(login) {
                 if(login) {
                     var token = data['result']['token'];
 
+                    console.log(data)
+
                     sessionStorage.setItem('token', token);
 
-                    M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
+                    // M.toast({html: 'Success! Bringing you to home page', classes: 'rounded green', displayLength: 500, completeCallback: function() {window.location.href = "/";}});
                 } else {
                     M.toast({html: 'Your Registration is successful!', classes: 'rounded green', displayLength: 500});
 
