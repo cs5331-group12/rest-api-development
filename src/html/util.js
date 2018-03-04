@@ -25,3 +25,18 @@ function isLoggedIn() {
 function sanitize(toBeSanitize) {
   return toBeSanitize == null ? toBeSanitize : toBeSanitize.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
+function logOut(callback) {
+  var token = sessionStorage.getItem('token');
+  $.ajax({
+    type: 'POST',
+    data: {
+      "token": token,
+    },
+    url: "http://localhost:8080/users/expire",
+    success: function(data) {
+      sessionStorage.removeItem('token');
+      callback();
+    }
+  })
+}
