@@ -88,7 +88,13 @@ If a response is received, you're good to go.
 Please replace the example screenshots with screenshots of your completed
 project. Feel free to include more than one.
 
-![Sample Screenshot](./img/samplescreenshot.png)
+![Registration Page](./img/registration.png)
+![Login Page](./img/login.png)
+![Public Diaries Page](./img/public.png)
+![Private Diaries Page](./img/private.png)
+![Made Public](./img/madePublic.png)
+![Made Private](./img/madePrivate.png)
+![Create Diary Page](./img/create.png)
 
 ## Administration and Evaluation
 
