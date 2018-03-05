@@ -96,10 +96,10 @@ Please fill out this section with details relevant to your team.
 
 ### Team Members
 
-1. Member 1 Name
-2. Member 2 Name
-3. Member 3 Name
-4. Member 4 Name
+1. Chua Si Hao
+2. Low Wei Kit
+3. Hoo De Lin
+4. Ye Kyaw Swa Aung
 
 ### Short Answer Questions
 
@@ -113,11 +113,28 @@ Answer: Please replace this sentence with your answer.
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
-Answer: Please replace this sentence with your answer.
+Answer:
+1. Restrict HTTP methods
+Apply a whitelist of permitted HTTP Methods e.g. GET, POST, PUT;
+Reject all requests not matching the whitelist with HTTP response code 405 Method not allowed
+Make sure the caller is authorised to use the incoming HTTP method on the resource collection, action, and record
+
+2. Encrypt private diaries in the database
+
+3. HTTP unencrypted traffic
+We are not using HTTPS when submit requests. This implies that the calls (especially user-sensitive data) are not safe from illegal tampering
+
+4. Validate content types
+A REST request or response body should match the intended content type in the header. Otherwise it may lead to misinterpretation at the back-end side and lead to code injection/execution.
+
+5. Respond with generic error messages - avoid revealing details of the failure unnecessarily
+For instance, Invalid Auth Token may give users a hint to why their requests failed.
+
 
 #### Question 4: Are there any additional features you would like to highlight?
 
-Answer: Please replace this sentence with your answer.
+Answer:
+Client-side redirection: The client will always check if a token is available before the user is able to gain access to privileged pages (Viewing private diaries, Creating new diaries)
 
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
@@ -125,19 +142,19 @@ Answer: Please replace this sentence with your answer.
 
 #### Feedback: Is there any other feedback you would like to give?
 
-Answer: Please replace this sentence with your answer.
+Answer: None
 
 ### Declaration
 
 #### Please declare your individual contributions to the assignment:
 
-1. Member 1 Name
+1. Chua Si Hao
     - Integrated feature x into component y
     - Implemented z
-2. Member 2 Name
-    - Wrote the front-end code
-3. Member 3 Name
+2. Low Wei Kit
     - Designed the database schema
+3. Hoo De Lin
+    - Wrote the front-end code
 4. Member 4 Name
-    - Implemented x
+    - Integrated the API calls, handle request and response at the Front-end.
 
