@@ -88,13 +88,22 @@ If a response is received, you're good to go.
 Please replace the example screenshots with screenshots of your completed
 project. Feel free to include more than one.
 
-![Registration Page](./img/registration.png)
-![Login Page](./img/login.png)
+**Public Diaries Page - Anyone can view these diaries**
 ![Public Diaries Page](./img/public.png)
-![Private Diaries Page](./img/private.png)
-![Made Public](./img/madePublic.png)
-![Made Private](./img/madePrivate.png)
+
+**Registration Page**
+![Registration Page](./img/registration.png)
+
+**Login Page**
+![Login Page](./img/login.png)
+
+**Create Diary Page - Diary are created as private by default - To prevent accidental public diary exposure**
 ![Create Diary Page](./img/create.png)
+
+**User Diary Page - User can view the diary records that he/she has created**
+Users can also manipulate the public/private settings from here
+![User Diaries Page](./img/diary.png)
+
 
 ## Administration and Evaluation
 
@@ -122,7 +131,7 @@ We have implemented the assignment with the following web technology stack:
 
 Answer:
 1. We have found out that our web app is susceptible to XSS attack. Putting a `<script>` tag on any input field (“User registration”, “Diary creation”) will cause the script to be executed. To fix this issue, we change `<` to `&lt;` and `>` to `&gt;`
-2. Similarly, the backend API
+2. Similarly, the backend API also accept  `<script>` tag without filters. Allowing stored XSS to occur. Filters to prevent tags are also included to sanitize user's input.
 3. The backend API has debug mode on by default which grant additional privileges and specific error messages from showing. This could be potential security risk if not disabled and secured at production. We enforced the settings and allowed localhost to make API calls.
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
@@ -154,7 +163,7 @@ Client-side redirection: The client will always check if a token is available be
 
 Answer:
 Initially, we have found out that our web app is susceptible to XSS attack. Putting a `<script>` tag on any input field (“User registration”, “Diary creation”) will cause the script to be executed. To fix this issue, we change `<` to `&lt;` and `>` to `&gt;`
-We initially do sanitization at the front-end and assumed that Django ORM would sanitize the HTML objects which are submitted with the request. Turns out, such auto-sanitization is done only with the templating system which we did not choose to utilize it for this web-app. As such, we fall back to using the same sanitization technique employed at the front-end.
+We initially do sanitization at the front-end and assumed that Django ORM would sanitize the HTML objects which are submitted with the request. Turns out, such auto-sanitization is done only with the templating system which we did not choose to utilize it for this web-app. As such, we fall back to using the same sanitization technique employed at the front-end on the back-end API.
 
 #### Feedback: Is there any other feedback you would like to give?
 
