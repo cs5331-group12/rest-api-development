@@ -120,9 +120,9 @@ We have implemented the assignment with the following web technology stack:
 
 #### Question 2: Are there any security considerations your team thought about?
 
-Answer: Please replace this sentence with your answer.
+Answer:
 1. We have found out that our web app is susceptible to XSS attack. Putting a `<script>` tag on any input field (“User registration”, “Diary creation”) will cause the script to be executed. To fix this issue, we change `<` to `&lt;` and `>` to `&gt;`
-2. Similarly, the backend API 
+2. Similarly, the backend API
 3. The backend API has debug mode on by default which grant additional privileges and specific error messages from showing. This could be potential security risk if not disabled and secured at production. We enforced the settings and allowed localhost to make API calls.
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
