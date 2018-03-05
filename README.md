@@ -105,11 +105,19 @@ Please fill out this section with details relevant to your team.
 
 #### Question 1: Briefly describe the web technology stack used in your implementation.
 
-Answer: Please replace this sentence with your answer.
+Answer:
+We have implemented the assignment with the following web technology stack:
+1. Django (Backend API Requirements)
+2. MySQLite - (Database Storage)
+3. HTML/CSS/Javascript with MaterializeCSS and jQuery (Frontend + Ajax calls)
+4. Ubuntu/Linux (Docker image)
 
 #### Question 2: Are there any security considerations your team thought about?
 
 Answer: Please replace this sentence with your answer.
+1. We have found out that our web app is susceptible to XSS attack. Putting a `<script>` tag on any input field (“User registration”, “Diary creation”) will cause the script to be executed. To fix this issue, we change `<` to `&lt;` and `>` to `&gt;`
+2. Similarly, the backend API 
+3. The backend API has debug mode on by default which grant additional privileges and specific error messages from showing. This could be potential security risk if not disabled and secured at production. We enforced the settings and allowed localhost to make API calls.
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
 
@@ -138,7 +146,8 @@ Client-side redirection: The client will always check if a token is available be
 
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
-Answer: Please replace this sentence with your answer.
+Answer:
+Initially, we have found out that our web app is susceptible to XSS attack. Putting a `<script>` tag on any input field (“User registration”, “Diary creation”) will cause the script to be executed. To fix this issue, we change `<` to `&lt;` and `>` to `&gt;`
 
 #### Feedback: Is there any other feedback you would like to give?
 
