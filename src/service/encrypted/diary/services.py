@@ -12,10 +12,11 @@ def required(data, *args):
 			result = False
 	return result
 
-
 def strtobool(text):
 	return text.lower() in ("true", "yes", "t", "1") 
 
+def sanitize(text):
+	return text.replace("<","&lt;").replace(">", "&gt;")
 
 def retrieve_diary_public(data=None):
 
@@ -78,10 +79,10 @@ def create_diary(data):
 
 	if user:
 		diary = Diary(
-			title=data["title"],
+			title=sanitize( data["title"] ),
 			user=user,
 			is_public=public,
-			text=data["text"]
+			text=sanitize( data["text"] )
 			)
 		diary.save()
 

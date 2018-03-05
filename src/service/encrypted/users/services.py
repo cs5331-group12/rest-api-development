@@ -14,6 +14,9 @@ def required(data, *args):
 			result = False
 	return result
 
+def sanitize(text):
+	return text.replace("<","&lt;").replace(">", "&gt;")
+
 def create_user(data):
 
 	validation = required(data, 'username', 'password', "fullname", "age")
@@ -36,10 +39,10 @@ def create_user(data):
 	except User.DoesNotExist:
 		# User does not exist in DB - create new User
 		user = User.objects.create_user(
-			username=data["username"],
+			username=sanitize( data["username"] ),
 			password=data["password"]
 			)
-		user.profile.fullname=data["fullname"]
+		user.profile.fullname=sanitize( data["fullname"] )
 		user.profile.age=data["age"]
 		user.save()
 
