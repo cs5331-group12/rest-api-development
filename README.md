@@ -174,12 +174,12 @@ Answer: None
 #### Please declare your individual contributions to the assignment:
 
 1. Chua Si Hao
-    - Integrated feature x into component y
-    - Implemented z
+    - Backend API
 2. Low Wei Kit
     - Designed the database schema
+    - Backend API
 3. Hoo De Lin
     - Wrote the front-end code
-4. Member 4 Name
+4. Ye Kyaw Swa Aung
     - Integrated the API calls, handle request and response at the Front-end.
 
