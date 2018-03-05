@@ -154,6 +154,7 @@ Client-side redirection: The client will always check if a token is available be
 
 Answer:
 Initially, we have found out that our web app is susceptible to XSS attack. Putting a `<script>` tag on any input field (“User registration”, “Diary creation”) will cause the script to be executed. To fix this issue, we change `<` to `&lt;` and `>` to `&gt;`
+We initially do sanitization at the front-end and assumed that Django ORM would sanitize the HTML objects which are submitted with the request. Turns out, such auto-sanitization is done only with the templating system which we did not choose to utilize it for this web-app. As such, we fall back to using the same sanitization technique employed at the front-end.
 
 #### Feedback: Is there any other feedback you would like to give?
 
